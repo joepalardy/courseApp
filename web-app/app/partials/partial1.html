@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class='span2'>
+        Search: <input ng-model="query">
+        <select ng-model="HoursId" ng-options=" c.creditHours as c.creditHours for c in courses | orderBy: 'creditHours' | unique: 'creditHours'">
+		<option value="">Credit Hours...</option>
+</select>
+    </div>
+    <div class="span10">
+      <!--Body content-->
+
+    <ul class="courses">
+        <li ng-repeat="course in courses | filter:query | filter:HoursId">
+          <h5>{{course.courseCode}}</h5>
+          <p>Name: {{course.courseName}}</p>
+          <p>Department: {{course.department}}</p>
+          <p>Hours: {{course.creditHours}}</p>
+          <p>Description: {{course.description}}</p>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
