@@ -1,5 +1,11 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<h2>Course Details</h2>
+ <div class="span10">
+ <h5>{{course.programCode}} {{course.courseNum}}</h5>
+          <p>Department: {{course.department}}</p>
+          <p>Program: {{course.program}}</p>
+          <p>Hours: {{course.creditHours}}</p>
+          <p>Description: {{course.description}}</p>
+          <p>Transfer Module: {{course.OTM}}</p>
+</div>
+
+<a href="https://sctssap.admin2.ysu.edu:8443/pls/PRODS/bwckctlg.p_disp_listcrse?term_in=201440&subj_in={{course.programCode}}&crse_in={{course.courseNum}}&schd_in=" >Fall Schedule {{course.courseName}}</a>

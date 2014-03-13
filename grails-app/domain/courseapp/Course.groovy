@@ -6,7 +6,8 @@ class Course {
 
 	String department
 	String program
-	String courseCode
+	String programCode
+	String courseNum
 	String courseName
 	String creditHours
 	String prereq
@@ -17,7 +18,8 @@ class Course {
     static constraints = {
 		department blank:false
 		program blank:false
-		courseCode blank:false
+		courseNum blank:false
+		programCode blank:false
 		courseName blank:false
 		creditHours blank:false
 		

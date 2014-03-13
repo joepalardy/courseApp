@@ -2,23 +2,38 @@
   <div class="row-fluid">
     <div class='span2'>
         Search: <input ng-model="query">
-        <select ng-model="HoursId" ng-options=" c.creditHours as c.creditHours for c in courses | orderBy: 'creditHours' | unique: 'creditHours'">
+        
+        Program: <select ng-model="ProgramId" ng-options=" c.program as c.program for c in courses | orderBy: 'program' | unique: 'program'">
+		<option value="">Program...</option>
+		</select>
+        
+        Credit Hours: <select ng-model="HoursId" ng-options=" c.creditHours as c.creditHours for c in courses | orderBy: 'creditHours' | unique: 'creditHours'">
 		<option value="">Credit Hours...</option>
+		</select>
+
+Transfer Module Approved: <select ng-model="TMApproved" >
+		<option value="">OTM...</option>
+		<option value=true>Yes</option>
+		<option value=false>No</option>
 </select>
+
     </div>
     <div class="span10">
       <!--Body content-->
 
     <ul class="courses">
-        <li ng-repeat="course in courses | filter:query | filter:HoursId">
-          <h5>{{course.courseCode}}</h5>
+        <li ng-repeat="course in courses | filter:query | filter: ProgramID | filter:HoursId | filter: {OTM: TMApproved} | limitTo: itemsLimit()">
+          
+          <a href="#/courses/{{course.id}}">{{course.programCode}} {{course.courseNum}}</a>
           <p>Name: {{course.courseName}}</p>
           <p>Department: {{course.department}}</p>
+          <p>Program: {{course.program}}</p>
           <p>Hours: {{course.creditHours}}</p>
           <p>Description: {{course.description}}</p>
+          <p>Transfer Module: {{course.OTM}}</p>
         </li>
       </ul>
-
+ <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Show more</button> 
     </div>
   </div>
 </div>
