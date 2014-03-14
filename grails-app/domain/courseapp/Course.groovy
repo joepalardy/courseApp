@@ -16,12 +16,14 @@ class Course {
 	
 	
     static constraints = {
-		department blank:false
-		program blank:false
-		courseNum blank:false
-		programCode blank:false
-		courseName blank:false
-		creditHours blank:false
+		department blank:true, nullable: false
+		program blank:true, nullable: false
+		courseNum blank:true, nullable: true
+		programCode blank:true, nullable: true
+		courseName blank:true, nullable: true
+		creditHours blank:true, nullable: true
+		prereq nullable: true
+		description maxSize:1000, blank: true
 		
     }
 }

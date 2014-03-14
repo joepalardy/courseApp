@@ -5,10 +5,14 @@
 angular.module('curriculumApp.controllers', []).
   controller('CourseListCtrl', ['$scope', '$http','$rootScope',
 	function ($scope, $http,$rootScope){
-  		$http.get('http://localhost:8080/courseApp/courses.json').success(function (data) {
-   		 $scope.courses = data;
+  		$http.get('http://localhost:8080/courseApp/courses.json?max=5000').success(function (data) {
+  			console.log(data.length);
+  			for (var j=0;j<data.length;j++){
+               data[j].courseCode = data[j].programCode + " "+ data[j].courseNum;
+            };
+  		$scope.courses = data;
    	    var pagesShown = 1;
-   	    var pageSize = 5;
+   	    var pageSize = 25;
    	    $scope.itemsLimit = function() {
    	        return pageSize * pagesShown;
    	    };

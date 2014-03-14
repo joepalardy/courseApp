@@ -3,13 +3,15 @@
     <div class='span2'>
         Search: <input ng-model="query">
         
-        Program: <select ng-model="ProgramId" ng-options=" c.program as c.program for c in courses | orderBy: 'program' | unique: 'program'">
-		<option value="">Program...</option>
-		</select>
-        
-        Credit Hours: <select ng-model="HoursId" ng-options=" c.creditHours as c.creditHours for c in courses | orderBy: 'creditHours' | unique: 'creditHours'">
+     <!--     Credit Hours: <select ng-model="HoursId" ng-options=" c.creditHours as c.creditHours for c in courses | orderBy: 'creditHours' | unique: 'creditHours'">
 		<option value="">Credit Hours...</option>
-		</select>
+		</select>-->
+        
+        Program: <select ng-model="pgrmId" ng-options=" c.program as c.program for c in courses | orderBy: 'program' | unique: 'program'">
+		<option value="">Program...</option>
+      </select>
+        
+		
 
 Transfer Module Approved: <select ng-model="TMApproved" >
 		<option value="">OTM...</option>
@@ -22,9 +24,9 @@ Transfer Module Approved: <select ng-model="TMApproved" >
       <!--Body content-->
 
     <ul class="courses">
-        <li ng-repeat="course in courses | filter:query | filter: ProgramID | filter:HoursId | filter: {OTM: TMApproved} | limitTo: itemsLimit()">
+        <li ng-repeat="course in courses | filter:query | filter:{program: pgrmId} | filter:HoursId | filter: {OTM: TMApproved} | limitTo: itemsLimit()">
           
-          <a href="#/courses/{{course.id}}">{{course.programCode}} {{course.courseNum}}</a>
+          <a href="#/courses/{{course.id}}">{{course.courseCode}}</a>
           <p>Name: {{course.courseName}}</p>
           <p>Department: {{course.department}}</p>
           <p>Program: {{course.program}}</p>
