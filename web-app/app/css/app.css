@@ -27,8 +27,15 @@ body {
 
 .courses li {
   clear: both;
-  height: 200px;
+  height: 20%;
   padding-top: 15px;
+  border: 1px solid #c6c6c6; 
+  border-radius: 5px;  
+  margin: 0 0 2em; 
+  padding: 2%; 
+  width: 96%; 
+  overflow: hidden;}
+  
 }
 
 /** Detail View **/

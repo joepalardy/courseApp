@@ -2,19 +2,26 @@
   <div class="row-fluid">
     <div class='span2'>
         Search: <input ng-model="query">
-        
-     <!--     Credit Hours: <select ng-model="HoursId" ng-options=" c.creditHours as c.creditHours for c in courses | orderBy: 'creditHours' | unique: 'creditHours'">
-		<option value="">Credit Hours...</option>
-		</select>-->
-        
-        Program: <select ng-model="pgrmId" ng-options=" c.program as c.program for c in courses | orderBy: 'program' | unique: 'program'">
-		<option value="">Program...</option>
+  
+      Department: <select ng-model="departmentId" ng-options=" c as c.department for c in courses | orderBy: 'department' | unique: 'department'">
+		<option value="">Department...</option>
       </select>
         
+       Credit Hours: <select ng-model="HoursId" ng-options=" c as c.creditHours for c in courses | orderBy: 'creditHours' |  filter: {department: departmentId.department} | unique: 'creditHours' ">
+		<option value="">Credit Hours...</option>
+		</select>
+		General Education: <select ng-model="GenEdId" ng-options=" c as c.genEd for c in courses | orderBy: 'genEd' |  filter: {department: departmentId.department} | unique: 'genEd' ">
+		<option value="">General Education...</option>
+		</select>
 		
 
 Transfer Module Approved: <select ng-model="TMApproved" >
 		<option value="">OTM...</option>
+		<option value=true>Yes</option>
+		<option value=false>No</option>
+</select>
+Transfer Assurance Guide: <select ng-model="TAGpproved" >
+		<option value="">TAG...</option>
 		<option value=true>Yes</option>
 		<option value=false>No</option>
 </select>
@@ -24,15 +31,18 @@ Transfer Module Approved: <select ng-model="TMApproved" >
       <!--Body content-->
 
     <ul class="courses">
-        <li ng-repeat="course in courses | filter:query | filter:{program: pgrmId} | filter:HoursId | filter: {OTM: TMApproved} | limitTo: itemsLimit()">
+        <li ng-repeat="course in courses | filter:query  | filter:{department: departmentId.department}:true | filter: {OTM: TMApproved} | filter: {TAG: TAGpproved} | filter:{creditHours:HoursId.creditHours} |GenEdFilter:GenEdId.genEd:true | limitTo: itemsLimit()">
           
-          <a href="#/courses/{{course.id}}">{{course.courseCode}}</a>
+          <a ng-href="#/courses/{{course.id}}">{{course.courseCode}}</a>
           <p>Name: {{course.courseName}}</p>
           <p>Department: {{course.department}}</p>
-          <p>Program: {{course.program}}</p>
           <p>Hours: {{course.creditHours}}</p>
           <p>Description: {{course.description}}</p>
-          <p>Transfer Module: {{course.OTM}}</p>
+          <p ng-if = "course.otm">Transfer Module: {{course.otm}}</p>
+          <p ng-if = "course.tag">Transfer Assurance Guide: {{course.tag}}</p>
+          <p ng-if="course.prereq">Prereq: {{course.prereq}}</p>
+          <p ng-if="course.genEd">General Education: {{course.genEd}}</p>
+          <p ng-if="course.genEdAlt">General Education Alt: {{course.genEdAlt}}</p>
         </li>
       </ul>
  <button ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Show more</button> 

@@ -1,12 +1,20 @@
 <h2>Course Details</h2>
  <div class="span10">
- <h5>{{course.programCode}} {{course.courseNum}}</h5>
+ <h3>{{course.programCode}} {{course.courseNum}} {{course.courseName}}</h3>
           <p>Department: {{course.department}}</p>
-          <p>Program: {{course.program}}</p>
           <p>Hours: {{course.creditHours}}</p>
           <p>Description: {{course.description}}</p>
           <p>Transfer Module: {{course.OTM}}</p>
+          <p <div ng-if="course.prereq">Prereq: {{course.prereq}}</p>
 </div>
 <div class="span10">
-<a href="https://sctssap.admin2.ysu.edu:8443/pls/PRODS/bwckctlg.p_disp_listcrse?term_in=201440&subj_in={{course.programCode}}&crse_in={{course.courseNum}}&schd_in=" >Fall Schedule {{course.courseName}}</a>
+Course Schedules 
+		<select ng-model="courseDate">
+		<option value="">Select Semester...</option>
+		<option value="201420">Spring 2014</option>
+		<option value="201430">Summer 2014</option>
+		<option value="201440">Fall 2014</option>
+		</select>
+		
+<p><a class="btn btn-default"  href="https://sctssap.admin2.ysu.edu:8443/pls/PRODS/bwckctlg.p_disp_listcrse?term_in={{courseDate}}&subj_in={{course.programCode}}&crse_in={{course.courseNum}}&schd_in=">Get Course Schedule</a></p>		
 </div>

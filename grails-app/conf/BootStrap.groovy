@@ -7,21 +7,24 @@ class BootStrap {
 		
 		
 		
-		def filePath = "resources/courses.txt"
+		def filePath = "resources/fullOutput.txt"
 		def text = grailsApplication.getParentContext().getResource("classpath:$filePath").getInputStream().getText()
 		def json = JSON.parse(text)
 		for (courseData in json) {
 		
 		  def c = new Course(
-				department: courseData ["department"],
-		program: courseData ["program"],
+			  courseId: courseData["courseId"],
+				department: courseData ["Department"],
 		programCode: courseData ["programCode"],
 		courseNum: courseData ["courseNum"],
-		courseName: courseData ["courseName"],
+		courseName: courseData ["courseTitle"],
 		creditHours: courseData ["creditHours"],
 		prereq: courseData ["prereq"],
 		description: courseData ["description"],
-		OTM: (courseData["OTM"]=="true")
+		otm: courseData ["transferModule"],
+		tag: courseData ["transferArticulation"],
+		genEd: courseData ["GenEd"],
+		genEdAlt: courseData ["GenEdAlt"]
 			).save(failOnError: true);
 		}
     }

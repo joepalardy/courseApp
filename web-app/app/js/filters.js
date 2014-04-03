@@ -41,4 +41,27 @@ angular.module('curriculumApp.filters', []).
     }
     return items;
   };
-}]);
+}]).filter('GenEdFilter', [function(){
+	  /* array is first argument, each additional argument is prefixed by a ":" in filter markup*/
+	  return function(dataArray, searchTerm){
+	      if(!dataArray ) return;
+	      /* when term is cleared, return full array*/
+	      if( !searchTerm){
+	          return dataArray
+	       }else{
+	           /* otherwise filter the array */
+	           return dataArray.filter(function( item){
+                  if(item.genEd){
+                	 if(item.genEdAlt)
+                		 {
+                		 return item.genEd.indexOf(searchTerm) > -1 || item.genEdAlt.indexOf(searchTerm) > -1;  
+                		 }
+                	 else
+                	 {
+                		 return item.genEd.indexOf(searchTerm) > -1;
+                	 }
+                  }
+	           });
+	       } 
+	  }    
+	}]);

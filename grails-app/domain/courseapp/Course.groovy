@@ -2,28 +2,33 @@ package courseapp
 import grails.rest.*
 
 @Resource()
-class Course {
-
+class Course{
+	String courseId
 	String department
-	String program
 	String programCode
 	String courseNum
 	String courseName
 	String creditHours
 	String prereq
 	String description
-	Boolean OTM 
-	
-	
+	String otm
+	String tag
+	String genEd
+	String genEdAlt
+
     static constraints = {
-		department blank:true, nullable: false
-		program blank:true, nullable: false
+		courseId blank: false, nullable: false
+		department blank:true, nullable: true
 		courseNum blank:true, nullable: true
 		programCode blank:true, nullable: true
 		courseName blank:true, nullable: true
 		creditHours blank:true, nullable: true
-		prereq nullable: true
-		description maxSize:1000, blank: true
-		
+		prereq blank: true, nullable: true
+		description maxSize:1000, blank: true, nullable: true
+		genEd blank:true, nullable: true
+		genEdAlt blank:true, nullable: true
+		otm blank:true, nullable: true
+		tag blank:true, nullable: true
+
     }
 }
