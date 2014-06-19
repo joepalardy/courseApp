@@ -5,7 +5,7 @@
 angular.module('curriculumApp.controllers', []).
   controller('CourseListCtrl', ['$scope', '$http','$rootScope',
 	function ($scope, $http,$rootScope){
-  		$http.get('http://localhost:8080/courseApp/courses.json?max=6000').success(function (data) {
+  		$http.get('http://default-environment-xa8zgy69dc.elasticbeanstalk.com/courses.json?max=6000').success(function (data) {
   			console.log(data.length);
   			for (var j=0;j<data.length;j++){
                data[j].courseCode = data[j].programCode + " "+ data[j].courseNum;
@@ -44,7 +44,7 @@ angular.module('curriculumApp.controllers', []).
   }])
   .controller('CourseCtrl',  ['$scope', '$routeParams', '$http',
      function($scope, $routeParams, $http) {
-	    $http.get('http://localhost:8080/courseApp/courses/' + $routeParams.courseId + '.json').success(function(data) {
+	    $http.get('http://default-environment-xa8zgy69dc.elasticbeanstalk.com/courses/' + $routeParams.courseId + '.json').success(function(data) {
 	      $scope.course = data; 
 	    });
 }]);

@@ -31,7 +31,7 @@ environments {
 		 username = "admin"
 		 password = "password"
 		 pooled = true
-		 dbCreate = "update"
+		 dbCreate = "create-drop"
 		 driverClassName = "com.mysql.jdbc.Driver"
 		 url = "jdbc:mysql://aahv3gtidae0kh.ccrazjjpamty.us-west-2.rds.amazonaws.com:3306/ebdb?user=admin&password=password"
 		 dialect = org.hibernate.dialect.MySQL5InnoDBDialect
